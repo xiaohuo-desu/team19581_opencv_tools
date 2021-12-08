@@ -7,11 +7,12 @@ import java.util.Scanner;
 
 public class opencv_test
 {
-   static int lowL = 70;
-   static int lowA = -10;
-   static int lowB = 43;
-   static int maxL = 96;
-   static int maxA = 20;
+    //默认参数
+   static int lowL = 35;
+   static int lowA = -19;
+   static int lowB = -18;
+   static int maxL = -100;
+   static int maxA = -10;
    static int maxB = 127;
     public static void opencv(String input, String output,int change)
     {
@@ -39,10 +40,20 @@ public class opencv_test
         System.load("E:\\下载\\opencv\\opencv\\build\\java\\x64\\opencv_java454.dll");
         System.load("E:\\下载\\opencv\\opencv\\build\\java\\x64\\opencv_videoio_ffmpeg454_64.dll");
         Mat srcImgMat = Imgcodecs.imread(input);
-        Mat desImaMat= new Mat(srcImgMat.rows(),srcImgMat.cols(), CvType.CV_8UC1);
+        Mat desImaMat= new Mat(srcImgMat.rows(),srcImgMat.cols(), CvType.CV_32SC3);
 
         //转换
         Imgproc.cvtColor(srcImgMat, desImaMat, Imgproc.COLOR_BGR2Lab);
+
+        //将LAB转换为OpenCV的屑LAB
+        /*
+        lowL = lowL*255/100;
+        maxL = maxL*255/100;
+        lowA += 128;
+        maxA += 128;
+        lowB += 128;
+        maxB += 128;
+        */
 
         //设定Lab颜色
         Scalar lowLAB = new Scalar(lowL,lowA,lowB);
