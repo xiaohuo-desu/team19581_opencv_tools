@@ -40,7 +40,7 @@ public class menu extends main
         int exit = 0;
         while (exit == 0)
         {
-        System.out.println("递减MAX（M）递增 LOW（L）输入E退出");
+        System.out.println("递减MAX（M）递增 LOW（L） Test（T） 输入E退出");
         Scanner scanner = new Scanner(System.in);
         String answer = scanner.next();
         switch (answer)
@@ -123,12 +123,12 @@ public class menu extends main
                             System.out.println("=A=?");
                     }
                 }
-                    case "L":
-                    case "l":
-                        System.out.println("递增L/A/B E停止");
-                        int exit3 = 0;
-                        while(exit3 == 0)
-                        {
+            case "L":
+            case "l":
+                System.out.println("递增L/A/B E停止");
+                int exit3 = 0;
+                while(exit3 == 0)
+                {
                             Scanner scanner2 = new Scanner(System.in);
                             answer = scanner2.next();
                             switch (answer)
@@ -201,14 +201,24 @@ public class menu extends main
                                     System.out.println("=A=?");
                             }
                         }
-                        break;
-                    case "E":
-                    case "e":
-                        opencv_test.opencv(input, output,0);
-                        exit = 1;
-                        break;
-                    default:
-                        System.out.println("=A=?");
+                break;
+            case "E":
+            case "e":
+                opencv_test.opencv(input, output,0);
+                exit = 1;
+                break;
+            case "T":
+            case "t":
+                int x = 0;
+                while(x<100)
+                {
+                    x+=1;
+                    lowL+=1;
+                    opencv_test.opencv(input, output,0);
+                }
+                break;
+            default:
+                   System.out.println("=A=?");
                 }
 
             }

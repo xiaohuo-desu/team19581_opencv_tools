@@ -15,7 +15,6 @@ public class main extends opencv_test {
             case "I", "i" -> menu.increaseMenu();
             case "N", "n" -> {
                 System.out.println("Good Bye~");
-                opencv_test.opencv(input, output, 0);
             }
             default -> System.out.println("=A=?");
         }
