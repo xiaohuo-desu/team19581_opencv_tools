@@ -1,7 +1,9 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class menu extends main
 {
+    static int test = 0;
     public void changeMenu()
         {
             String input = main.input;
@@ -210,13 +212,53 @@ public class menu extends main
             case "T":
             case "t":
                 int x = 0;
-                while(x<100)
+                Random r = new Random(1);
+                int times = 0;
+                while(times<100000)
                 {
-                    x+=1;
+                    /*
                     lowL+=1;
                     opencv_test.opencv(input, output,0);
+                    System.out.println("目前的参数是："+lowL);
+                     */
+                    //玄学调试
+                    int ranlL = r.nextInt(100);
+                    int ranlA = r.nextInt(127);
+                    int ranlB = r.nextInt(127);
+                    int ranmL = r.nextInt(100);
+                    int ranmA = r.nextInt(127);
+                    int ranmB = r.nextInt(127);
+
+                    if (ranlL<ranmL&&ranlA<ranmA&&ranlB<ranmB) {
+                        x=x+1;
+                        lowL = ranlL;
+                        lowA = ranlA;
+                        lowB = ranlB;
+                        maxL = ranmL;
+                        maxA = ranmA;
+                        maxB = ranmB;
+                        opencv_test.opencv(input, output, 0);
+                        times+=1;
+                        System.out.println("已尝试"+times+"次");
+                        if (persentage>80)
+                        {
+                            test += 1;
+                            System.out.println("---序列" + test + "---");
+                            System.out.println("目前L的参数是：" + lowL);
+                            System.out.println("目前A的参数是：" + lowA);
+                            System.out.println("目前B的参数是：" + lowB);
+                            System.out.println("目前L的参数是：" + maxL);
+                            System.out.println("目前A的参数是：" + maxA);
+                            System.out.println("目前B的参数是：" + maxB);
+                            System.out.println("识别率为："+persentage+"%");
+                        }
+                    }
+                    //System.out.println("按任意键继续");
+                    //Scanner temp = new Scanner(System.in);
+                    //String str = null;
+                    //str = temp.next();
                 }
-                break;
+
             default:
                    System.out.println("=A=?");
                 }
