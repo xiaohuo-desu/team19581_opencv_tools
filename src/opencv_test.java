@@ -44,12 +44,12 @@ public class opencv_test
         //转换
         Imgproc.cvtColor(srcImgMat, desImaMat, Imgproc.COLOR_BGR2HSV);
 
-        //设定Lab颜色
-        Scalar lowLAB = new Scalar(lowH,lowS,lowV);
-        Scalar maxLAB = new Scalar(maxH,maxS ,maxV);
+        //设定HSV颜色
+        Scalar lowHSV = new Scalar(lowH,lowS,lowV);
+        Scalar maxHSV = new Scalar(maxH,maxS ,maxV);
 
         //存储二值图像至desImaMat
-        Core.inRange(desImaMat,lowLAB,maxLAB,desImaMat);
+        Core.inRange(desImaMat,lowHSV,maxHSV,desImaMat);
 
         //去除噪点，小于5x5的都将忽略
         Mat kernel = Imgproc.getStructuringElement(Imgproc.MORPH_RECT,new Size(5,5));
