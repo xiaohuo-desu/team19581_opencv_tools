@@ -3,22 +3,16 @@ import org.opencv.highgui.HighGui;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
-import java.util.Scanner;
-
 public class opencv_test
 {
     //默认参数
-   static int lowL = 0;
-   static int lowA = -127;
-   static int lowB = -127;
-   static int maxL = 100;
-   static int maxA = 127;
-   static int maxB = 127;
-   static double persentage = 0;
-   //设定识别范围
-   static final Rect ROI = new Rect(
-           new Point(520, 280),
-           new Point(690, 460));
+   static int lowH = 4;
+   static int lowS = 42;
+   static int lowV = 23;
+   static int maxH = 67;
+   static int maxS = 255;
+   static int maxV = 255;
+
     public static void opencv(String input, String output,int change)
     {
 
@@ -29,14 +23,14 @@ public class opencv_test
             case 0:
                 break;
             case 1:
-                lowL = setting.setLowL();
-                lowA = setting.setLowA();
-                lowB = setting.setLowB();
+                lowH = setting.setLowL();
+                lowS = setting.setLowA();
+                lowV = setting.setLowB();
                 break;
             case 2:
-                maxL = setting.setMaxL();
-                maxA = setting.setMaxA();
-                maxB = setting.setMaxB();
+                maxH = setting.setMaxL();
+                maxS = setting.setMaxA();
+                maxV = setting.setMaxB();
                 break;
             default:
                 break;
@@ -45,37 +39,17 @@ public class opencv_test
         System.load("E:\\下载\\opencv\\opencv\\build\\java\\x64\\opencv_java454.dll");
         System.load("E:\\下载\\opencv\\opencv\\build\\java\\x64\\opencv_videoio_ffmpeg454_64.dll");
         Mat srcImgMat = Imgcodecs.imread(input);
-        Mat desImaMat= new Mat(srcImgMat.rows(),srcImgMat.cols(), CvType.CV_32FC3);
+        Mat desImaMat = srcImgMat.clone();
 
         //转换
-        Imgproc.cvtColor(srcImgMat, desImaMat, Imgproc.COLOR_BGR2Lab);
-
-        //将LAB转换为OpenCV的屑LAB
-
-        /*
-        lowL = lowL*255/100;
-        maxL = maxL*255/100;
-        lowA += 128;
-        maxA += 128;
-        lowB += 128;
-        maxB += 128;
-        */
+        Imgproc.cvtColor(srcImgMat, desImaMat, Imgproc.COLOR_BGR2HSV);
 
         //设定Lab颜色
-        Scalar lowLAB = new Scalar(lowL,lowA,lowB);
-        Scalar maxLAB = new Scalar(maxL,maxA ,maxB);
-
-        //识别方框内容
-        Mat content = desImaMat.submat(ROI);
-
-        //识别内容的数值
-        double value = Core.sumElems(content).val[0] / ROI.area() / 255;
-        content.release();
-        persentage = Math.round(value * 100);
-        System.out.println("识别率为："+persentage);
+        Scalar lowLAB = new Scalar(lowH,lowS,lowV);
+        Scalar maxLAB = new Scalar(maxH,maxS ,maxV);
 
         //存储二值图像至desImaMat
-        Core.inRange(srcImgMat,lowLAB,maxLAB,desImaMat);
+        Core.inRange(desImaMat,lowLAB,maxLAB,desImaMat);
 
         //去除噪点，小于5x5的都将忽略
         Mat kernel = Imgproc.getStructuringElement(Imgproc.MORPH_RECT,new Size(5,5));
@@ -83,11 +57,9 @@ public class opencv_test
 
         //输出
         int test = menu.test;
+        test += 1;
         Imgcodecs.imwrite(output+test+".jpg",desImaMat);
 
-        //识别区域上色
-        Scalar colorStone = new Scalar(255, 0, 0);
-        Imgproc.rectangle(desImaMat, ROI, colorStone);
         //GUI
         HighGui.imshow("opencv",desImaMat);
         HighGui.waitKey(10);
