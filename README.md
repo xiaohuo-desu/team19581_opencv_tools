@@ -16,7 +16,9 @@ opencv下载地址:<https://opencv.org/releases/>
 
 static String input = "C:\\Users\\lenovo\\Pictures\\Camera Roll\\WIN_20211202_17_41_10_Pro.jpg";
 
-static String output = "C:\\Users\\lenovo\\Pictures\\Camera Roll\\test\\test.jpg";
+修改为需要导入的图片
+
+static String output = "C:\\Users\\lenovo\\Pictures\\Camera Roll\\test\\test_";
 
 需要修改为自己的目录（图片必须为JPG结尾）
 
