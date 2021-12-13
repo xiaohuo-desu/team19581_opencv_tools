@@ -30,6 +30,8 @@ System.load("E:\\下载\\opencv\\opencv\\build\\java\\x64\\opencv_videoio_ffmpeg
 
 需要修改为自己opencv的DLL文件
 
+##Test模式
+Test模式目前实现的是图片筛选，根据提供的识别率范围存储图片以及对应HSV数值，用于快速应用至FTC颜色配置中
 ## TODO
 
 - E键返回
