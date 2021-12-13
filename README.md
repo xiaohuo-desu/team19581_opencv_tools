@@ -9,7 +9,7 @@ opencv下载地址:<https://opencv.org/releases/>
 
 温馨提醒：IDEA需要在“项目结构-依赖”中添加opencv的JAR
 
-## 源码配置
+## 源码环境配置
 共有两处地方需要按环境修改
 
 **main中的**
@@ -30,6 +30,14 @@ System.load("E:\\下载\\opencv\\opencv\\build\\java\\x64\\opencv_videoio_ffmpeg
 
 需要修改为自己opencv的DLL文件
 
+##识别区域
+opencv_test中的此行代码
+
+static final Rect ROI = new Rect(
+new Point(550, 250),
+new Point(650, 470));
+
+为识别区域，请按需修改
 ##Test模式
 Test模式目前实现的是图片筛选，根据提供的识别率范围存储图片以及对应HSV数值，用于快速应用至FTC颜色配置中
 ## TODO
