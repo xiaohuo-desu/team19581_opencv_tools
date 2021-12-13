@@ -212,7 +212,9 @@ public class menu extends main
             case "T":
             case "t":
                 Random r = new Random(1);
-                while(test<100)
+                int x = 0;
+                test = 0;
+                while(test<10)
                 {
                     /*
                     lowL+=1;
@@ -227,22 +229,29 @@ public class menu extends main
                     int ranmS = r.nextInt(255);
                     int ranmV = r.nextInt(255);
 
-                    if (ranlH<ranmH&&ranlS<ranmS&&ranlV<ranmV) {
+                    if (ranlH<ranmH&&ranlS<ranmS&&ranlV<ranmV)
+                    {
                         lowH = ranlH;
                         lowS = ranlS;
                         lowV = ranlV;
                         maxH = ranmH;
                         //maxA = ranmS;
                         //maxB = ranmV;
+                        x+=1;
                         opencv_test.opencv(input, output, 0);
+                        System.out.println("已尝试："+x+"次");
+                        if (percentage>350&&percentage<390)
+                        {
                             test += 1;
                             System.out.println("---序列" + test + "---");
                             System.out.println("目前最小H的是：" + lowH);
                             System.out.println("目前最小S的是：" + lowS);
                             System.out.println("目前最小V的是：" + lowV);
-                            System.out.println("目前最小H的是：" + maxH);
-                            //System.out.println("目前最小S的是：" + maxS);
-                            //System.out.println("目前最小V的是：" + maxV);
+                            System.out.println("目前最大H的是：" + maxH);
+                            System.out.println("识别率为："+percentage);
+                        }
+                        //System.out.println("目前最小S的是：" + maxS);
+                        //System.out.println("目前最小V的是：" + maxV);
                     }
                     //System.out.println("按任意键继续");
                     //Scanner temp = new Scanner(System.in);

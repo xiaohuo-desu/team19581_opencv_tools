@@ -15,8 +15,8 @@ public class opencv_test
    static double percentage;
 
     static final Rect ROI = new Rect(
-            new Point(60, 330),
-            new Point(240, 460));
+            new Point(550, 250),
+            new Point(650, 470));
 
     public static void opencv(String input, String output,int change)
     {
@@ -63,6 +63,7 @@ public class opencv_test
         content.release();
 
         percentage = Math.round(Value * 100);
+        //System.out.println("识别率为："+percentage);
 
         //去除噪点，小于5x5的都将忽略
         Mat kernel = Imgproc.getStructuringElement(Imgproc.MORPH_RECT,new Size(5,5));
@@ -72,6 +73,10 @@ public class opencv_test
         int test = menu.test;
         test += 1;
         Imgcodecs.imwrite(output+test+".jpg",desImaMat);
+
+        //识别区域上色
+        Scalar colorStone = new Scalar(0, 255, 0);
+        Imgproc.rectangle(desImaMat, ROI, colorStone);
 
         //GUI
         HighGui.imshow("opencv",desImaMat);
