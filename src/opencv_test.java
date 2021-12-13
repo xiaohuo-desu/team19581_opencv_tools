@@ -12,6 +12,11 @@ public class opencv_test
    static int maxH = 67;
    static int maxS = 255;
    static int maxV = 255;
+   static double percentage;
+
+    static final Rect ROI = new Rect(
+            new Point(60, 330),
+            new Point(240, 460));
 
     public static void opencv(String input, String output,int change)
     {
@@ -23,14 +28,14 @@ public class opencv_test
             case 0:
                 break;
             case 1:
-                lowH = setting.setLowL();
-                lowS = setting.setLowA();
-                lowV = setting.setLowB();
+                lowH = setting.setLowH();
+                lowS = setting.setLowS();
+                lowV = setting.setLowV();
                 break;
             case 2:
-                maxH = setting.setMaxL();
-                maxS = setting.setMaxA();
-                maxV = setting.setMaxB();
+                maxH = setting.setMaxH();
+                maxS = setting.setMaxS();
+                maxV = setting.setMaxV();
                 break;
             default:
                 break;
@@ -50,6 +55,14 @@ public class opencv_test
 
         //存储二值图像至desImaMat
         Core.inRange(desImaMat,lowHSV,maxHSV,desImaMat);
+
+        //识别方框内容
+        Mat content = desImaMat.submat(ROI);
+        double Value = Core.sumElems(desImaMat).val[0] / ROI.area() / 255;
+
+        content.release();
+
+        percentage = Math.round(Value * 100);
 
         //去除噪点，小于5x5的都将忽略
         Mat kernel = Imgproc.getStructuringElement(Imgproc.MORPH_RECT,new Size(5,5));

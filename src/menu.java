@@ -49,7 +49,7 @@ public class menu extends main
         {
             case "M":
             case "m":
-                System.out.println("递减L/A/B E停止");
+                System.out.println("递减H/S/V E停止");
                 int exit2 = 0;
                 while(exit2 == 0)
                 {
@@ -57,8 +57,8 @@ public class menu extends main
                     answer = scanner2.next();
                     switch (answer)
                     {
-                        case "L":
-                        case "l":
+                        case "H":
+                        case "h":
                             while (true)
                             {
                                 String str = null;
@@ -77,8 +77,8 @@ public class menu extends main
                                 }
                             }
                             break;
-                        case "A":
-                        case "a":
+                        case "S":
+                        case "s":
                             while (true)
                             {
                                 String str = null;
@@ -97,8 +97,8 @@ public class menu extends main
                                 }
                             }
                             break;
-                        case "B":
-                        case "b":
+                        case "V":
+                        case "v":
                             while (true)
                             {
                                 String str = null;
@@ -127,7 +127,7 @@ public class menu extends main
                 }
             case "L":
             case "l":
-                System.out.println("递增L/A/B E停止");
+                System.out.println("递增H/S/V E停止");
                 int exit3 = 0;
                 while(exit3 == 0)
                 {
@@ -135,8 +135,8 @@ public class menu extends main
                             answer = scanner2.next();
                             switch (answer)
                             {
-                                case "L":
-                                case "l":
+                                case "H":
+                                case "h":
                                     while (true)
                                     {
                                         String str = null;
@@ -155,8 +155,8 @@ public class menu extends main
                                         }
                                     }
                                     break;
-                                case "A":
-                                case "a":
+                                case "S":
+                                case "s":
                                     while (true)
                                     {
                                         String str = null;
@@ -175,8 +175,8 @@ public class menu extends main
                                         }
                                     }
                                     break;
-                                case "B":
-                                case "b":
+                                case "V":
+                                case "v":
                                     while (true)
                                     {
                                         String str = null;
@@ -257,41 +257,41 @@ public class menu extends main
             }
     }
 
-    public int setLowL()
+    public int setLowH()
     {
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("L最小值？");
+        System.out.println("H最小值？");
         return scanner.nextInt();
     }
-    public int setLowA()
+    public int setLowS()
     {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("A最小值？");
+        System.out.println("S最小值？");
         return scanner.nextInt();
     }
-    public int setLowB()
+    public int setLowV()
     {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("B最小值？");
+        System.out.println("V最小值？");
         return scanner.nextInt();
     }
-    public int setMaxL()
+    public int setMaxH()
     {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("L最大值？");
+        System.out.println("H最大值？");
         return scanner.nextInt();
     }
-    public int setMaxA()
+    public int setMaxS()
     {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("A最大值？");
+        System.out.println("S最大值？");
         return scanner.nextInt();
     }
-    public int setMaxB()
+    public int setMaxV()
     {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("B最大值？");
+        System.out.println("V最大值？");
         return scanner.nextInt();
     }
 }
