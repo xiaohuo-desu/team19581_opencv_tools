@@ -45,3 +45,10 @@ Test模式目前实现的是图片筛选，根据提供的识别率范围存储�
 - E键返回
 - 随时选择目录
 - 控制台设定识别区（原图+识别框）
+
+## 资料参考
+<https://docs.opencv.org/3.4/javadoc/index.html>
+<https://blog.csdn.net/qq_33485434/article/details/90512177>
+<https://docs.opencv.org/4.x/df/d9d/tutorial_py_colorspaces.html>
+<https://blog.csdn.net/KuXiaoQuShiHuai/article/details/103111294>
+<https://www.coder.work/article/2091453>
