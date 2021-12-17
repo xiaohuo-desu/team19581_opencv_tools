@@ -13,14 +13,18 @@ public class opencv_test
    static int maxS = 255;
    static int maxV = 255;
    static double percentage;
-
-    static final Rect ROI = new Rect(
-            new Point(550, 250),
-            new Point(650, 470));
-
+    static Rect ROI = new Rect(
+            new Point(0, 0),
+            new Point(200, 200));
     public static void opencv(String input, String output,int change)
     {
+        //判断ROI是否自定义
 
+        if(scanner.ROIchange == 1)
+        {
+            Rect ROI2 = scanner.setRect();
+            ROI = ROI2;
+        }
         //动态设定值
         menu setting = new menu();
         switch (change)
@@ -41,8 +45,8 @@ public class opencv_test
                 break;
         }
 
-        System.load("E:\\下载\\opencv\\opencv\\build\\java\\x64\\opencv_java454.dll");
-        System.load("E:\\下载\\opencv\\opencv\\build\\java\\x64\\opencv_videoio_ffmpeg454_64.dll");
+        System.load("C:\\Users\\17367\\Desktop\\opencv\\build\\java\\x64\\opencv_java454.dll");
+        System.load("C:\\Users\\17367\\Desktop\\opencv\\build\\java\\x64\\opencv_videoio_ffmpeg454_64.dll");
         Mat srcImgMat = Imgcodecs.imread(input);
         Mat desImaMat = srcImgMat.clone();
 
@@ -82,5 +86,6 @@ public class opencv_test
         HighGui.imshow("opencv",desImaMat);
         HighGui.waitKey(10);
     }
+
 
 }
