@@ -13,18 +13,14 @@ public class opencv_test
    static int maxS = 255;
    static int maxV = 255;
    static double percentage;
-    static Rect ROI = new Rect(
-            new Point(0, 0),
-            new Point(200, 200));
+
+    static final Rect ROI = new Rect(
+            new Point(550, 250),
+            new Point(650, 470));
+
     public static void opencv(String input, String output,int change)
     {
-        //判断ROI是否自定义
 
-        if(scanner.ROIchange == 1)
-        {
-            Rect ROI2 = scanner.setRect();
-            ROI = ROI2;
-        }
         //动态设定值
         menu setting = new menu();
         switch (change)
@@ -45,8 +41,8 @@ public class opencv_test
                 break;
         }
 
-        System.load("C:\\Users\\17367\\Desktop\\opencv\\build\\java\\x64\\opencv_java454.dll");
-        System.load("C:\\Users\\17367\\Desktop\\opencv\\build\\java\\x64\\opencv_videoio_ffmpeg454_64.dll");
+        System.load("E:\\下载\\opencv\\opencv\\build\\java\\x64\\opencv_java454.dll");
+        System.load("E:\\下载\\opencv\\opencv\\build\\java\\x64\\opencv_videoio_ffmpeg454_64.dll");
         Mat srcImgMat = Imgcodecs.imread(input);
         Mat desImaMat = srcImgMat.clone();
 
@@ -56,6 +52,10 @@ public class opencv_test
         //设定HSV颜色
         Scalar lowHSV = new Scalar(lowH,lowS,lowV);
         Scalar maxHSV = new Scalar(maxH,maxS ,maxV);
+
+        //去除噪点，小于5x5的都将忽略
+        Mat kernel = Imgproc.getStructuringElement(Imgproc.MORPH_RECT,new Size(5,5));
+        Imgproc.morphologyEx(desImaMat,desImaMat,Imgproc.MORPH_CLOSE,kernel);
 
         //存储二值图像至desImaMat
         Core.inRange(desImaMat,lowHSV,maxHSV,desImaMat);
@@ -68,10 +68,6 @@ public class opencv_test
 
         percentage = Math.round(Value * 100);
         //System.out.println("识别率为："+percentage);
-
-        //去除噪点，小于5x5的都将忽略
-        Mat kernel = Imgproc.getStructuringElement(Imgproc.MORPH_RECT,new Size(5,5));
-        Imgproc.morphologyEx(desImaMat,desImaMat,Imgproc.MORPH_CLOSE,kernel);
 
         //输出
         int test = menu.test;
@@ -86,6 +82,5 @@ public class opencv_test
         HighGui.imshow("opencv",desImaMat);
         HighGui.waitKey(10);
     }
-
 
 }
