@@ -222,12 +222,13 @@ public class menu extends main
                     System.out.println("目前的参数是："+lowL);
                      */
                     //玄学调试
-                    int ranlH = r.nextInt(10);
-                    int ranlS = r.nextInt(50);
-                    int ranlV = r.nextInt(60);
-                    int ranmH = r.nextInt(70);
+                    int ranlH = r.nextInt(10)+80;
+                    int ranlS = r.nextInt(5)+40;
+                    //int ranlV = r.nextInt(60);
+                    int ranlV = 46;
+                    int ranmH = r.nextInt(10)+95;
                     int ranmS = r.nextInt(255);
-                    int ranmV = r.nextInt(255);
+                    int ranmV = r.nextInt(248);
 
                     if (ranlH<ranmH&&ranlS<ranmS&&ranlV<ranmV)
                     {
@@ -235,12 +236,12 @@ public class menu extends main
                         lowS = ranlS;
                         lowV = ranlV;
                         maxH = ranmH;
-                        //maxA = ranmS;
-                        //maxB = ranmV;
+                        // maxS = ranmS;
+                        //maxV = ranmV;
                         x+=1;
                         opencv_test.opencv(input, output, 0);
                         System.out.println("已尝试："+x+"次");
-                        if (percentage>350&&percentage<390)
+                        if (percentage>98)
                         {
                             test += 1;
                             System.out.println("---序列" + test + "---");
@@ -248,10 +249,11 @@ public class menu extends main
                             System.out.println("目前最小S的是：" + lowS);
                             System.out.println("目前最小V的是：" + lowV);
                             System.out.println("目前最大H的是：" + maxH);
+                            //System.out.println("目前最大S的是：" + maxS);
+                            //System.out.println("目前最小V的是：" + maxV);
                             System.out.println("识别率为："+percentage);
                         }
-                        //System.out.println("目前最小S的是：" + maxS);
-                        //System.out.println("目前最小V的是：" + maxV);
+
                     }
                     //System.out.println("按任意键继续");
                     //Scanner temp = new Scanner(System.in);
