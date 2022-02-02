@@ -44,7 +44,6 @@ Test模式目前实现的是图片筛选，根据提供的识别率范围存储�
 
 - E键返回
 - 随时选择目录
-- 控制台设定识别区（原图+识别框）
 
 ## 资料参考
 <https://docs.opencv.org/3.4/javadoc/index.html>
